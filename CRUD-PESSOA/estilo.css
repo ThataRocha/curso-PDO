@@ -1,0 +1,65 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family: 'Courier New', Courier, monospace;
+}
+label, input {
+
+    display: block;
+    line-height: 30px;
+    height: 30px;
+    outline: none;
+    font-size: 13pt;
+    width: 100%;
+}
+form{
+    width: 330px;
+    background-color: rgba(0,0,0,0.2);
+    padding: 20px;
+    margin: 30px auto;
+}
+input[type="submit"]{
+    margin-top: 10px;
+}
+h2{
+    text-align:center;
+}
+#esquerda{
+    width: 35%;
+    height: 500px;
+    float: left;
+}
+#direita{
+    width: 65%;
+    height: 500px;
+    float: right;
+}
+table{
+    background-color: rgba(0,0,0,0.2);
+    width: 90%;
+    margin: 30px auto;
+}
+tr{
+    line-height: 30px;
+}
+tr#titulo{
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0,0,0,0.6)
+}
+td{
+    padding: 0 5px;
+}
+tr#titulo > td{
+    text-transform: uppercase; 
+}
+
+a{
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 5px;
+    text-decoration:none;
+    cursor: pointer;
+    color: black;
+}
