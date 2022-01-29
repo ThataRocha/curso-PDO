@@ -28,16 +28,24 @@
             }
         }
     ?>
+    <?php
+         if(isset($_GET['id_up'])){
+            $id_update = addslashes($_GET['id_up']);
+            $res = $p->buscardadosPessoa($id_update);
+         }
+
+    ?>
     <section id="esquerda">
         <form method="POST">
             <h2>Cadastrar Pessoa</h2>
             <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome">
+            <input type="text" name="nome" id="nome" 
+            value=" <?php if(isset($res)){ echo $res['nome'];}?>">
             <label for="telefone">Telefone</label>
-            <input type="text" name="telefone" id="telefone">
+            <input type="text" name="telefone" id="telefone" value="<?php if(isset($res)){echo $res['telefone'];} ?> ">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email">
-            <input type="submit" value="Cadastrar">
+            <input type="email" name="email" id="email" value="<?php if(isset($res)){echo $res['email'];}?> ">
+            <input type="submit" value=" <?php if(isset($res)){ echo "Atualizar";}else{ echo "Cadastrar";} ?> ">
         </form>
     </section>
     <section id="direita">
@@ -61,7 +69,7 @@
                         ?>
                             <!-- Botões de editar e excluir por linha -->
                             <td>
-                                <a href="#">Editar</a> 
+                                <a href="index.php?id_up=<?php echo $dados[$i]['id'];?>">Editar</a>
                                 <a href="index.php?id=<?php echo $dados[$i]['id'];?>">Excluir</a>
                             </td>
                         <?php
