@@ -13,18 +13,36 @@
 </head>
 <body>
     <?php
-        if(isset($_POST['nome'])){
-            $nome = addslashes($_POST['nome']);
-            $telefone = addslashes($_POST['telefone']);
-            $email = addslashes($_POST['email']);
+        if(isset($_POST['nome'])){ // clicou no botão para cadastrar ou editar
             
-            if(!empty($nome) && !empty($telefone) && !empty($email))
-            {
-                if(!$p->cadastrarPessoa($nome, $telefone, $email)){
-                   echo "Email já cadastrado!";               
+            //------------------------EDITAR ------------------------------
+            if(isset($_GET['id_up']) && !empty($_GET['id_up'])){
+
+                $id_update = addslashes($_GET['id_up']);
+                $nome = addslashes($_POST['nome']);
+                $telefone = addslashes($_POST['telefone']);
+                $email = addslashes($_POST['email']);
+                
+                if(!empty($nome) && !empty($telefone) && !empty($email))
+                {
+                    $p->atualizarDados($id_update, $nome, $telefone, $email);
+                    header("location:index.php");
                 }
+            //---------------------------CADASTRAR----------------------------
             }else{
-                echo "Preencha todos os campos!";
+
+                $nome = addslashes($_POST['nome']);
+                $telefone = addslashes($_POST['telefone']);
+                $email = addslashes($_POST['email']);
+                
+                if(!empty($nome) && !empty($telefone) && !empty($email))
+                {
+                    if(!$p->cadastrarPessoa($nome, $telefone, $email)){
+                    echo "Email já cadastrado!";               
+                    }
+                }else{
+                    echo "Preencha todos os campos!";
+                }
             }
         }
     ?>
@@ -33,7 +51,6 @@
             $id_update = addslashes($_GET['id_up']);
             $res = $p->buscardadosPessoa($id_update);
          }
-
     ?>
     <section id="esquerda">
         <form method="POST">
